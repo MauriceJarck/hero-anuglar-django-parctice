@@ -54,11 +54,11 @@ export class HeroService {
     );
   }
 
-  newHero(hero: Hero){
-    return this.http.post<Hero>(this.herosURL, hero, this.httpOptions).pipe(
-      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-      catchError(this.handleError<Hero>('addHero'))
-    );
+  newHero(data: FormData){
+    let hero_name = data.get('name')
+    return this.http.post('http://127.0.0.1:5000/heros/', data).pipe(
+        tap(_ => this.log(`added hero w/ id=${hero_name}`)),
+        catchError(this.handleError<Hero>('add Hero')));
   }
 
   deleteHero(hero_id: number){

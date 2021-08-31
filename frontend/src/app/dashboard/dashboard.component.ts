@@ -11,6 +11,7 @@ import { HeroService } from '../hero.service';
 export class DashboardComponent implements OnInit {
 
   heroes: Hero[] = [];
+  images: File[] = [];
 
   constructor(private heroService: HeroService) {} 
 
@@ -20,7 +21,11 @@ export class DashboardComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes.slice(1, 5));
+    for(let i = 0; i>this.images.length; i++){
+      this.images[i] = this.heroes[i].img
+    }
   }
+
 
   deleteAll(): void{
     

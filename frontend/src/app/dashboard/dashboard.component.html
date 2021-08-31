@@ -2,7 +2,9 @@
     <h2>Leaderboard</h2>
     <div class="heroes menue">
         <ul>
-            <li *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">{{hero.name}}</li>
+            <div *ngFor="let image of images">
+                <img  [src]=image *ngIf="image" width="200" height=auto>
+            </div>
         </ul>
     </div>
 

@@ -1,9 +1,10 @@
 <div *ngIf="hero">
     <div id="div1">
         <h2>{{hero.name}} Details</h2>
+        <img [src]=url width="200" height=auto>
         <div><span>id: </span>{{hero.id}}</div>
         <label for="hero-name">Hero name: </label>
-        <input id="hero-name" [(ngModel)]="hero.name" placeholder="hero.name">
+        <input id="hero-name" [(ngModel)]="hero.name" placeholder="enter name here">
         <br>
         <button (click)="save()">save</button>
         <button (click)="delete()">delete</button>

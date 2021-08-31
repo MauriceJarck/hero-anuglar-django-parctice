@@ -10,18 +10,26 @@ class HeroViewSet(viewsets.ModelViewSet):
 
     def post(self, request, *args, **kwargs):
         name = request.data['name']
-        Hero.objects.create(title=name)
+        img = request.data['img']
+        print(name, img)
+        Hero.objects.create(title=name, img=img)
         return HttpResponse({'message': 'Hero created'}, status=200)
 
     def put(self, request, *args, **kwargs):
-        newname = request.data['name']
         id = request.data['id']
+        new_name = request.data['name']
+        new_img = request.data['img']
 
         hero = Hero.objects.get(pk=id)
-        hero.name = newname
+
+        if hero.name != new_name:
+            hero.name = new_name
+        if hero.img != new_img:
+            hero.img = new_img
+
         hero.save()
 
-        return HttpResponse({'message': 'Hero name changed'}, status=200)
+        return HttpResponse({'message': 'Hero property changed'}, status=200)
 
     def delete(self, request):
         id = request.data['id']

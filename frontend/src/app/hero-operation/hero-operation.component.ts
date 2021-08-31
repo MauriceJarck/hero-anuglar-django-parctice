@@ -13,6 +13,9 @@ import { Hero } from '../hero';
 export class HeroCreateComponent implements OnInit {
   name!: string;
   heroes: Hero[] = [];
+  url: any = "/assets/images/placeholder.png"
+  img?: any
+
 
   constructor(private http: HttpClient, 
     private heroService: HeroService,
@@ -30,16 +33,29 @@ export class HeroCreateComponent implements OnInit {
     this.heroService.getHeroes()
     .subscribe(heroes => this.heroes = heroes);
   }
+  selectFile(event: any){
+    var reader = new FileReader();
+		reader.readAsDataURL(event.target.files[0]);
+		reader.onload = (_event) => {
+		this.url = reader.result; 
+    this.img = event.target.files[0];
+		}
+  }
+  
 
   newHero(): void {
-    const name = this.name
-    if (!name) { return; }
-    this.heroService.newHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-      });
+    if (!this.name) { return; }
+    const uploadData = new FormData();
+    uploadData.append('name', this.name);
+    uploadData.append('img', this.img);
+    this.heroService.newHero(uploadData)
+      .subscribe();
+      
   }
+
   goBack(): void {
     this.location.back();
   }
+
+ 
 }
