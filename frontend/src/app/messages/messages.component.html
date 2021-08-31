@@ -1,0 +1,9 @@
+<div class="prefooter">
+    <span class="span1">Log</span>
+    <button class="clear" (click)="messageService.clear()">clear messages</button>
+</div>
+
+<div class="footer" *ngIf="messageService.messages.length">
+    <div *ngFor='let message of messageService.messages'> {{message}} </div>
+</div>
+

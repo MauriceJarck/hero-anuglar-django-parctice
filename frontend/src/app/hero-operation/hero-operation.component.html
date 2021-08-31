@@ -1,0 +1,11 @@
+<h3>create new hero</h3>
+
+<label>
+  name:
+  <input type="text" (change)="onNameChanged($event)" />
+</label>
+<br/>
+
+<br/>
+<button class="create" (click)="newHero()">create</button>
+<button (click)="goBack()">go back</button>

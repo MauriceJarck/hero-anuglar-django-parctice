@@ -1,0 +1,41 @@
+/* MessagesComponent's private CSS styles */
+h2 {
+    color: #A80000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+  }
+  
+  .clear {
+    height: 15%;
+    position:absolute;
+    right:0;
+    margin-right: 1%;
+    margin: 10px 2px 5px 0;
+  }
+  .clear:hover {
+    color: white;
+    background-color: #42545C;
+  }
+
+  .prefooter{
+    position:absolute;
+    bottom:0;
+    width:98%;
+    height:21%; 
+  }
+
+  .span1{
+    font-size: 40px;
+    color:orangered;
+    margin: 10px;
+  }
+  .footer {
+    position:absolute;
+    bottom:0;
+    width:98%;
+    height:15%; 
+    border: 2px solid;
+    overflow: auto;
+    padding: 2px;
+    padding-left: 10px;
+  }

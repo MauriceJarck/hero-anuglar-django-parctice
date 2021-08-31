@@ -1,0 +1,28 @@
+label {
+  color: #435960;
+  font-weight: bold;
+}
+span {
+  color: #435960;
+  font-weight: bold;
+}
+input {
+  font-size: 1em;
+  padding: .5rem;
+}
+button {
+  margin: 10px 2px 5px 0;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #ccc;
+  cursor: auto;
+}
+
+#div1{
+  border: 2px solid #cfd8dc;
+  padding: 5px;
+}

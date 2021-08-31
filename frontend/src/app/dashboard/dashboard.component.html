@@ -1,0 +1,11 @@
+<div id="div1">
+    <h2>Leaderboard</h2>
+    <div class="heroes menue">
+        <ul>
+            <li *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">{{hero.name}}</li>
+        </ul>
+    </div>
+
+    <button routerLink="/create-hero">create hero</button>
+    <button (click)=deleteAll() routerLink="/dashboard">delete leading heros</button>
+</div>
