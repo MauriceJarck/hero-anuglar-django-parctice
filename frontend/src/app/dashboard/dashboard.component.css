@@ -50,6 +50,8 @@ li:hover {
 }
 
 #div1{
+  height: 600px;
   border: 2px solid #cfd8dc;
   padding: 5px;
+  overflow: auto;
 }
