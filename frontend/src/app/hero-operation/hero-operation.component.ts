@@ -16,15 +16,19 @@ export class HeroCreateComponent implements OnInit {
   url: any = "/assets/images/placeholder.png"
   img?: any
 
+  model = new Hero(1, "peter", this.url)
+  submitted = false;
 
-  constructor(private http: HttpClient, 
+  constructor(private http: HttpClient,
     private heroService: HeroService,
-    private messageService: MessageService, 
+    private messageService: MessageService,
     private location: Location) { }
 
   ngOnInit(): void {
   }
-  
+
+  onSubmit(){this.submitted = true;}
+
   onNameChanged(event: any){
     this.name = event.target.value;
   }
@@ -37,11 +41,11 @@ export class HeroCreateComponent implements OnInit {
     var reader = new FileReader();
 		reader.readAsDataURL(event.target.files[0]);
 		reader.onload = (_event) => {
-		this.url = reader.result; 
+		this.url = reader.result;
     this.img = event.target.files[0];
 		}
   }
-  
+
 
   newHero(): void {
     if (!this.name) { return; }
@@ -50,12 +54,10 @@ export class HeroCreateComponent implements OnInit {
     uploadData.append('img', this.img);
     this.heroService.newHero(uploadData)
       .subscribe();
-      
+
   }
 
   goBack(): void {
     this.location.back();
   }
-
- 
 }
