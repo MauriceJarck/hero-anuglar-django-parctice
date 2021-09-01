@@ -40,7 +40,6 @@ export class HeroDetailComponent implements OnInit {
   delete(): void{
     if(this.hero){
       this.heroService.deleteHero(this.hero.id).subscribe();
-      this.goBack()
     }
   }
 }
