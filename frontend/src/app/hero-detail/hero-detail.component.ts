@@ -12,8 +12,8 @@ import { HeroService } from '../hero.service';
 export class HeroDetailComponent implements OnInit {
   @Input() hero?: Hero;
   url: any = "/assets/images/placeholder.png"
-  constructor(private route: ActivatedRoute, 
-              private heroService:HeroService, 
+  constructor(private route: ActivatedRoute,
+              private heroService:HeroService,
               private location: Location
             ) { }
 
@@ -31,7 +31,6 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    console.log(this.hero)
     if (this.hero) {
       this.heroService.updateHero(this.hero)
         .subscribe(() => this.goBack());
@@ -44,5 +43,4 @@ export class HeroDetailComponent implements OnInit {
       this.goBack()
     }
   }
-
 }

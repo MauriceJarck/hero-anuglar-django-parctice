@@ -2,12 +2,13 @@
     <h2>Leaderboard</h2>
     <div class="heroes menue">
         <ul>
-            <div *ngFor="let image of images">
-                <img  [src]=image *ngIf="image" width="200" height=auto>
+            <div *ngFor="let hero of heroes">
+                <li routerLink="/detail/{{hero.id}}"><img  [src]=hero.img *ngIf="hero.img" width="auto" height=70> {{hero.name}}</li>
+                
             </div>
         </ul>
     </div>
 
     <button routerLink="/create-hero">create hero</button>
-    <button (click)=deleteAll() routerLink="/dashboard">delete leading heros</button>
+    <button (click)=deleteLeader() routerLink="/dashboard">delete leading heros</button>
 </div>
