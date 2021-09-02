@@ -12,7 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HeroCreateComponent } from './hero-operation/hero-operation.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component'
+import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { LoginComponent } from './login/login.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HeroSearchComponent } from './hero-search/hero-search.component'
     MessagesComponent,
     DashboardComponent,
     HeroCreateComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

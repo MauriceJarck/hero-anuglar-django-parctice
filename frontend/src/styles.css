@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+h1 {
+    margin-bottom: 0;
+  }
+  nav a {
+    padding: 1rem;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #cfd8dc;
+    color: #3d3d3d;
+  }
+  
+  nav a:hover {
+    color: white;
+    background-color: #42545C;
+  }
+  nav a:current{
+    background-color: #42545C;
+  }
+  nav a.active {
+    background-color: black;
+  }

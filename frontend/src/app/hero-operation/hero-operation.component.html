@@ -1,3 +1,7 @@
+<nav>
+    <a routerLink="/dashboard">Dashboard </a>
+    <a routerLink="/heroes">Heroes</a>
+</nav>
 <h3>create new hero</h3>
 <img [src]="url" *ngIf="url" width="200" height=auto>
 <br/>
@@ -7,6 +11,6 @@
 <label>Photo:</label>
 <input type="file" (change)="selectFile($event)">
 <br/>
-<button class="create" (click)="newHero()">create</button>
+<button class="create" (click)="newHero()" routerLink="/dashboard">create</button>
 <button (click)="goBack()">go back</button>
-
+<app-messages></app-messages>
