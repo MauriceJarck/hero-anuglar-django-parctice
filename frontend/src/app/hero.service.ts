@@ -17,7 +17,7 @@ export class HeroService {
     this.messageService.add(`heroservice[${new Date().toLocaleString()}]: ${message}`);
   }
 
-  private herosURL = 'http://127.0.0.1:5000/heros/'
+  private herosURL = 'http://127.0.0.1:5000/heroes/'
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -56,7 +56,7 @@ export class HeroService {
 
   newHero(data: FormData){
     let hero_name = data.get('name')
-    return this.http.post('http://127.0.0.1:5000/heros/', data).pipe(
+    return this.http.post(this.herosURL, data, this.httpOptions).pipe(
         tap(_ => this.log(`added hero w/ id=${hero_name}`)),
         catchError(this.handleError<HeroModel>('add HeroModel')));
   }
