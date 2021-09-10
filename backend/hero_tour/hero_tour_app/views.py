@@ -7,7 +7,7 @@ from .models import HeroModel, UserModel123
 
 
 class HeroViewSet(viewsets.ModelViewSet):
-    queryset = Hero.objects.all()
+    queryset = HeroModel.objects.all()
     serializer_class = HeroSerializer
     authentication_classes = [JWTAuthentication, ]
     permission_classes = [IsAuthenticated, ]
@@ -16,15 +16,15 @@ class HeroViewSet(viewsets.ModelViewSet):
         name = request.data['name']
         img = request.data['img']
         print(name, img)
-        Hero.objects.create(title=name, img=img)
-        return HttpResponse({'message': 'Hero created'}, status=200)
+        HeroModel.objects.create(title=name, img=img)
+        return HttpResponse({'message': 'HeroModel created'}, status=200)
 
     def put(self, request, *args, **kwargs):
         id = request.data['id']
         new_name = request.data['name']
         new_img = request.data['img']
 
-        hero = Hero.objects.get(pk=id)
+        hero = HeroModel.objects.get(pk=id)
 
         if hero.name != new_name:
             hero.name = new_name
