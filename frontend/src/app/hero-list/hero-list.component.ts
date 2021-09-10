@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero'
+import { HeroModel } from '../hero'
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
 
@@ -9,12 +9,12 @@ import { MessageService } from '../message.service';
   styleUrls: ['./hero-list.component.css']
 })
 export class HeroesComponent implements OnInit {
-  selectedHero?: Hero;
-  onSelect(hero: Hero):void{
+  selectedHero?: HeroModel;
+  onSelect(hero: HeroModel):void{
     this.selectedHero = hero;
     this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
-  heroes: Hero[] = [];
+  heroes: HeroModel[] = [];
 
   constructor(private heroService: HeroService, private messageService: MessageService) {}
 
