@@ -18,13 +18,19 @@ from django.conf.urls.static import static
 from django.urls import include, path
 from django.contrib import admin
 from rest_framework import routers
-from hero_tour_app.views import HeroViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+from hero_tour_app.views import HeroViewSet, UserViewSet
 
 router = routers.DefaultRouter()
-router.register('heros', HeroViewSet)
+router.register('heroes', HeroViewSet)
+# router.register('users', UserViewSet)
 
 urlpatterns = [
+  path('admin/', admin.site.urls),
   path('', include(router.urls)),
-  path('admin/', admin.site.urls)
+  path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+  path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

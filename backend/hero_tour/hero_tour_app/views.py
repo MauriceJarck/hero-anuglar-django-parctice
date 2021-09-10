@@ -1,12 +1,16 @@
 from rest_framework import viewsets
-from django.http import HttpResponse
-from .serializers import HeroSerializer
-from .models import Hero
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+from .serializers import HeroSerializer, UserSerializer
+from .models import HeroModel, UserModel123
 
 
 class HeroViewSet(viewsets.ModelViewSet):
     queryset = Hero.objects.all()
     serializer_class = HeroSerializer
+    authentication_classes = [JWTAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
 
     def post(self, request, *args, **kwargs):
         name = request.data['name']
