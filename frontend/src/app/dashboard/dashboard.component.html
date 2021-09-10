@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div class="background">
     <h2>Leaderboard</h2>
-    <div class="heroes menue">
+    <div class="dashboard">
         <ul>
             <div *ngFor="let hero of heroes">
                 <li routerLink="/detail/{{hero.id}}"><img  [src]=hero.img *ngIf="hero.img" width="auto" height=70> {{hero.name}}</li>
@@ -9,9 +9,10 @@
             </div>
         </ul>
     </div>
-
-    <button routerLink="/create-hero">create hero</button>
-    <button (click)=deleteLeader() routerLink="/dashboard">delete leading heros</button>
+    <div class="buttons">
+        <button routerLink="/create-hero">create hero</button>
+        <button (click)=deleteLeader() routerLink="/dashboard">delete leading heros</button>
+    </div>
     <app-hero-search></app-hero-search>
 </div>
 <!-- <app-messages></app-messages> -->
