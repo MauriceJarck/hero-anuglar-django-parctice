@@ -30,12 +30,12 @@ class HeroViewSet(viewsets.ModelViewSet):
 
         hero.save()
 
-        return HttpResponse({'message': 'Hero property changed'}, status=200)
+        return HttpResponse({'message': 'HeroModel property changed'}, status=200)
 
     def delete(self, request):
         id = request.data['id']
 
-        hero = Hero.objects.get(pk=id)
+        hero = HeroModel.objects.get(pk=id)
         hero.delete()
 
         return HttpResponse({'message': 'Hero deleted'})
