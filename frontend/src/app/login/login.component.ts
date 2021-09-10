@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountService } from '../account.service';
+import { UserModel } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -8,30 +9,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @Input() user?: UserModel;
   username: string = "";
   password: string = "";
-  submitted = false;
+  email: string = "";
+  token: string = "";
+  submitted: boolean = false;
+  authenticated: boolean = true;
 
-  constructor(private router: Router,
-              ) { }
+  constructor(
+    private router: Router,
+    private accountService: AccountService
+    ) { }
 
-  ngOnInit() {}
+  ngOnInit() { 
+  }
   
   onSubmit() {
 
-    this.submitted = true;
+    this.accountService.getTokensFromBackend(this.username, this.password).subscribe(res => this.login(res))
+    this.submitted = true
+  }
+ 
+  login(res: any): void{
+    var accessToken: string = res['access']
+    console.log(this.accountService.getTokenExpirationDate(accessToken))
+    // console.log(accessToken)
+    this.accountService.getRefreshedTokensFromBackend().subscribe()
 
-    if (this.password == "123"){
+    if (accessToken){
       this.router.navigateByUrl('/heroes')
-      console.log("routed")
     }
-    else{
-      this.router.navigateByUrl('/login')
-      window.location.reload();
-
-    }
- }
- login(){
-   console.log("login")
- }
+  }
 }
