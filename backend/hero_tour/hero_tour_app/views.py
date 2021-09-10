@@ -22,14 +22,11 @@ class HeroViewSet(viewsets.ModelViewSet):
     def put(self, request, *args, **kwargs):
         id = request.data['id']
         new_name = request.data['name']
-        new_img = request.data['img']
 
         hero = HeroModel.objects.get(pk=id)
 
         if hero.name != new_name:
             hero.name = new_name
-        if hero.img != new_img:
-            hero.img = new_img
 
         hero.save()
 
