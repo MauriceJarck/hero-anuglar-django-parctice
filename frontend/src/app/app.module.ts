@@ -24,7 +24,8 @@ import { LoginComponent } from './login/login.component'
     DashboardComponent,
     HeroCreateComponent,
     HeroSearchComponent,
-    LoginComponent
+    LoginComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
