@@ -1,19 +1,17 @@
 .navigation{
     width: 100%;
-    margin-bottom: 1%;
-    background-color: #cfd8dc;
+    background-color: black;
   }
   
 .navigation a{
   padding: 1rem;
-  background-color: #cfd8dc;
-  color: #3d3d3d;
+  background-color: black;
+  color: gold;
   display: inline-block;
   text-decoration: none;
 
 
 }
 .navigation a:hover {
-  color: white;
-  background-color: #42545C;
+  box-shadow: 0em 0em 2em  gold;
 }

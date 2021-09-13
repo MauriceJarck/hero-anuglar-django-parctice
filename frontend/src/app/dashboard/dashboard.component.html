@@ -2,11 +2,11 @@
 <div class="background">
     <h2>Leaderboard</h2>
     <div class="dashboard">
-        <ul>
-            <div *ngFor="let hero of heroes">
-                <li routerLink="/detail/{{hero.id}}"><img  [src]=hero.img *ngIf="hero.img" width="auto" height=70> {{hero.name}}</li>
-                
-            </div>
+        <ul class="heroes">
+            <li *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">
+                <span class="heroId"> {{hero.id}}  |</span>
+                <img  [src]=hero.img *ngIf="hero.img">
+                {{hero.name}}</li>
         </ul>
     </div>
     <div class="buttons">
@@ -15,4 +15,3 @@
     </div>
     <app-hero-search></app-hero-search>
 </div>
-<!-- <app-messages></app-messages> -->

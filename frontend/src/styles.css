@@ -1,17 +1,41 @@
 .background{
-  /* height: 1%; */
-  width: 50%;
+  width: 50vw;
   margin-left: auto;
   margin-right: auto;
-  /* margin-top: 10%; */
   padding: 60px 60px;
   background: url(/assets/images/headquater3.jpg) no-repeat center center #505050; 
   background-size: cover;
   box-shadow: 0px 30px 60px -5px #000;
+  font: normal 90% "Lucida Console" ;
 }
+
+.background h2{
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: gold;
+  padding: 1rem;
+  border-radius: 2em;
+}
+
+.background input{
+  width: 92%;
+  /* margin: 0px; */
+}
+
+.background img{
+  height: 30%;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.background button{
+  width: 100%;
+  /* margin-left: 25%; */
+}
+
 .main {
-    
-  
   font: normal 90% "Lucida Console" ;
   overflow: auto;
   position: relative;
@@ -31,50 +55,26 @@
 
 }
 
-nav a{
-  padding: 1rem;
-  background-color: #cfd8dc;
-  color: #3d3d3d;
+label {
   display: inline-block;
-
-}
-nav a:hover {
-  color: white;
-  background-color: #42545C;
-}
-nav a:current{
-  background-color: #42545C;
-}
-nav a.active {
-  background-color: black;
-}
-
-h2 {
-  /* padding-left: 20px; */
-  margin-left: 10%;
-  font-size: 22px;
-  text-transform: uppercase;
-  padding-bottom: 5px;
-  letter-spacing: 2px;
-  display: inline-block;
-  font-weight: 100;
-  color:gold;
-  border-radius: 10px;
+  padding: .2em .5em 0em .5em ;
+  margin-top: 15px;
+  margin-left: 20px;
+  color: gold;
+  border-radius: 10px 10px 0px 0px;
   background: rgba(0, 0, 0, 0.6);
-  padding: .5em;
+  
 }
 
-h2:first-child {
-  padding-left: 0px;
+a {
+  text-align: center;
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
 span {
-  text-transform: uppercase;
-  font-size: 12px;
-  opacity: 0.4; 
-  display: inline-block;
-  position: relative;
-  top: -65px;
   transition: all 0.5s ease-in-out;
 }
 
@@ -99,17 +99,6 @@ input:focus {
   color: white;
   box-shadow: 0em 0em 2em  gold;
 
-}
-
-label {
-  display: inline-block;
-  padding: .2em .5em 0em .5em ;
-  margin-top: 15px;
-  margin-left: 20px;
-  color: gold;
-  border-radius: 10px 10px 0px 0px;
-  background: rgba(0, 0, 0, 0.6);
-  
 }
 
 button {
@@ -137,26 +126,39 @@ button:focus {
   outline: none;
 }
 
+ul {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
 li {
   cursor: pointer;
   position: relative;
   left: 0;
-  margin: .5em;
+  background-color: rgba(0,0,0,.6);
+  color: gold;
+  margin: 0em 0em .5em .5em;
   padding: .3em 0;
-  height: 1.6em;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 0px;
-  color: white;
-  overflow: hidden;
-  transition: all 0.5s ease-in-out;
+  height: auto;
+  border-radius: 4px;
 }
 li:hover {
-  outline: 0;
-  border: 0px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 5);
-  color: white;
-  box-shadow: 0em 0em 2em  gold;
   left: .1em;
+  box-shadow: 0em 0em 1.5em  rgb(255, 196, 0);
+}
+
+.heroId {
+  display: inline-block;
+  font-size: small;
+  color: gold;
+  padding: 0.8em 0.7em 0 0.7em;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.6em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
 }

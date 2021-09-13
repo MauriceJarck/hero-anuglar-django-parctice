@@ -1,14 +1,10 @@
 <app-nav-bar></app-nav-bar>
-
-
 <div class="background">
   <h2>All Heroes</h2>
-  <ol class = "heroes">
+  <ul class = "heroes">
       <li *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">
-
-          <span class="badge"> {{hero.id}}  | </span>{{hero.name}}
-
+          <span class="heroId">{{hero.id}}  | </span>{{hero.name}}
       </li>
-  </ol>
+  </ul>
 </div>
 <!-- <app-messages></app-messages> -->
