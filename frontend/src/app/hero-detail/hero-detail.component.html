@@ -3,7 +3,6 @@
 <div class="background" *ngIf="hero" >
     <h2>{{hero.name}} Details</h2>
     <img [src]="hero.img" width="200" height=auto>
-    <div><span>id: </span>{{hero.id}}</div>
     <label for="hero-name">HeroModel name: </label>
     <input id="hero-name" [(ngModel)]="hero.name" placeholder="enter name here">
     <br>
