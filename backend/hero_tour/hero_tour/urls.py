@@ -20,7 +20,7 @@ from django.contrib import admin
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from hero_tour_app.views import HeroViewSet, UserViewSet
+from hero_tour_app.views import HeroViewSet #, UserViewSet
 
 router = routers.DefaultRouter()
 router.register('heroes', HeroViewSet)
