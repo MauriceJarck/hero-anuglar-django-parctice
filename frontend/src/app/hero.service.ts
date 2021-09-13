@@ -56,7 +56,8 @@ export class HeroService {
 
   newHero(data: FormData){
     let hero_name = data.get('name')
-    return this.http.post(this.herosURL, data, this.httpOptions).pipe(
+    console.log(data.get('name'), data.get('img'))
+    return this.http.post(this.herosURL, data).pipe(
         tap(_ => this.log(`added hero w/ id=${hero_name}`)),
         catchError(this.handleError<HeroModel>('add HeroModel')));
   }
