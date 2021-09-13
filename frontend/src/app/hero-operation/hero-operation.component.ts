@@ -48,8 +48,7 @@ export class HeroCreateComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('name', this.name);
     uploadData.append('img', this.img);
-    this.heroService.newHero(uploadData)
-      .subscribe();
+    this.heroService.newHero(uploadData).subscribe();
 
   }
 
