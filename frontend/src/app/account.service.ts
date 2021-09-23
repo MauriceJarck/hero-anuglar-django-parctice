@@ -20,23 +20,29 @@ export class AccountService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
-    private jwtHelper: JwtHelperService) { }
-
-
-  private log(message: string){
-    this.messageService.add(`heroservice[${new Date().toLocaleString()}]: ${message}`);
-  }
+    private jwtHelper: JwtHelperService,
+    ) { }
 
   private baseURL = 'http://127.0.0.1:5000/'
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.accessToken } )
+  };
+
+  private handleAuthError(err: HttpErrorResponse): Observable<any> {
+    if (err.status == 401 || err.status == 403) {
+      if(!this.isExpired(this.refreshToken)){
+        this.refreshTokenFromBackend().subscribe(_ => window.location.reload())
+      }
+      else{
+        window.location.reload()
+        // window.location.href = '/login'
+      }
+      // return of(err.message)
+    }
+    return throwError(err)
   }
+
   getAccessTokenPayload(){
     return JSON.stringify(this.jwtHelper.decodeToken(this.accessToken))
   }
@@ -52,20 +58,15 @@ export class AccountService {
 
   getTokensFromBackend(username: string, password:string){
     return this.http.post<UserModel>(this.baseURL + 'api/token/', {username, password}).pipe(
-      tap(_ => console.log("logged in")),
-      tap(res => this.saveTokens(res, false)),
-      catchError(this.handleError<UserModel>(`getToken: ${username}`)
-      )
-    );
+      tap(res => this.saveTokens(res, false)))
   }
 
-  getRefreshedTokensFromBackend(){
+  refreshTokenFromBackend(){
     console.log(this.refreshToken)
-    return this.http.post<RespModel>(this.baseURL + 'api/token/refresh/', {'refresh': localStorage.getItem('refresh')}).pipe(
+    return this.http.post<RespModel>(this.baseURL + 'api/token/refresh/', {'refresh': localStorage.getItem('refresh')}, this.httpOptions).pipe(
     tap(res => console.log(`got refreshed tokens ${res['access']}`)),
     tap(res => this.saveTokens(res, true)),
-    catchError(this.handleError<RespModel>(`refreshToken}`)
-      )
+    // catchError(x=> this.handleAuthError(x))
     );
   }
 
@@ -74,7 +75,7 @@ export class AccountService {
     var refreshToken: string = res['refresh']
 
     //if access token is refreshed there is no new refresh token. 
-    //This is implemented not to overwrite refreshtoken to undefined.
+    //This is implemented not to overwrite refresh-token to undefined.
     if(refresh){
       this.accessToken = accessToken
       localStorage.setItem('access', accessToken)

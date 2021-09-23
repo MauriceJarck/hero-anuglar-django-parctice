@@ -15,17 +15,23 @@ export class HeroService {
 
   private herosURL = 'http://127.0.0.1:5000/heroes/'
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
-
+ 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('access') } )
   };
+
+  private handleError(err: HttpErrorResponse): Observable<any> {
+    if (err.status == 401 || err.status == 403) {
+      if(!this.accService.isExpired(localStorage.getItem('refresh') || "")){
+        this.accService.refreshTokenFromBackend().subscribe(_ => window.location.reload())
+      }
+      else{
+        window.location.href = '/login'
+      }
+      return of(err.message)
+    }
+    return throwError(err)
+  }
 
   getHeroes(): Observable<HeroModel[]> {
     return this.http.get<HeroModel[]>(this.herosURL, this.httpOptions)
