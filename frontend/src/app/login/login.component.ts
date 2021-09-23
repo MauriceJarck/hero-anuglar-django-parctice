@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
 import { UserModel } from '../user';
-import { Observable, Subscription, of, from} from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -19,9 +18,9 @@ export class LoginComponent implements OnInit {
   password: string = ""
   email: string = ""
   token: string = ""
-  submitted: boolean = false
   authfail: any
   constructor(
+    private accountService: AccountService,
     private router: Router,
     ) { }
 
