@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
@@ -12,6 +12,8 @@ class HeroViewSet(viewsets.ModelViewSet):
     serializer_class = HeroSerializer
     authentication_classes = [JWTAuthentication, ]
     permission_classes = [IsAuthenticated, ]
+    search_fields = ['name']
+    filter_backends = (filters.SearchFilter, )
 
     def post(self, request, *args, **kwargs):
         name = request.data['name']
