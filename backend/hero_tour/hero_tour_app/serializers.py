@@ -1,10 +1,15 @@
 from rest_framework import serializers
-
-from .models import HeroModel, UserModel123
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from .models import HeroModel
 
 
 class HeroSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = HeroModel
         fields = ['name', 'id', 'img']
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']

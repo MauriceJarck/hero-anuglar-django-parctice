@@ -1,17 +1,14 @@
 from django.http import HttpResponse
 from rest_framework import viewsets, filters
-from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.contrib.auth.models import User
 
 from .serializers import HeroSerializer, UserSerializer
-from .models import HeroModel, UserModel123
+from .models import HeroModel
 
 
 class HeroViewSet(viewsets.ModelViewSet):
     queryset = HeroModel.objects.all()
     serializer_class = HeroSerializer
-    authentication_classes = [JWTAuthentication, ]
-    permission_classes = [IsAuthenticated, ]
     search_fields = ['name']
     filter_backends = (filters.SearchFilter, )
 
@@ -43,3 +40,7 @@ class HeroViewSet(viewsets.ModelViewSet):
 
         return HttpResponse({'message': 'Hero deleted'})
 
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
