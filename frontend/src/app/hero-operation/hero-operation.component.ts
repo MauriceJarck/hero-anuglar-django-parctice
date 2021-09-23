@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MessageService } from '../message.service';
 import { Location } from '@angular/common';
 import { HeroService } from '../hero.service';
 import { HeroModel } from '../hero';
@@ -19,7 +18,6 @@ export class HeroCreateComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private heroService: HeroService,
-    private messageService: MessageService,
     private location: Location) { }
 
   ngOnInit(): void {
@@ -55,6 +53,4 @@ export class HeroCreateComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
-
 }

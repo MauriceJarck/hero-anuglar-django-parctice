@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { MessageService } from './message.service';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 import { UserModel } from './user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RespModel } from './resp';
