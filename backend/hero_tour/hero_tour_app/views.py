@@ -2,13 +2,13 @@ from django.http import HttpResponse
 from rest_framework import viewsets, filters
 from django.contrib.auth.models import User
 
-from .serializers import HeroSerializer, UserSerializer
+from .serializers import ProductSerializer, UserSerializer
 from .models import ProductModel
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = ProductModel.objects.all()
-    serializer_class = HeroSerializer
+    serializer_class = ProductSerializer
     search_fields = ['name']
     filter_backends = (filters.SearchFilter, )
 

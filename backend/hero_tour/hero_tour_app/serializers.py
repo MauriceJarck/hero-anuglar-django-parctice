@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import ProductModel
 
 
-class HeroSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ProductModel
         fields = ['name', 'id', 'img']
