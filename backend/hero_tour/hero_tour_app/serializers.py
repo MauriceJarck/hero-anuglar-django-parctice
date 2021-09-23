@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import HeroModel
+from .models import ProductModel
 
 
 class HeroSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = HeroModel
+        model = ProductModel
         fields = ['name', 'id', 'img']
 
 

@@ -19,11 +19,11 @@ from django.urls import include, path
 from django.contrib import admin
 from rest_framework import routers
 
-from hero_tour_app.views import HeroViewSet, UserViewSet
+from hero_tour_app.views import ProductViewSet, UserViewSet
 
 router = routers.DefaultRouter()
-router.register('heroes', HeroViewSet)
-router.register(r'users', UserViewSet)
+router.register('products', ProductViewSet)
+router.register('users', UserViewSet)
 
 urlpatterns = [
   path('admin/', admin.site.urls),
