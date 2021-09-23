@@ -4,10 +4,10 @@
     <h2>Create new hero</h2>
     <img [src]="url" *ngIf="url" width="200" height=auto>
     <br/>
-    <label>Name:</label>
+    <label class="ontop">Name:</label>
     <input type="text" (change)="onNameChanged($event)" />
     <br/>
-    <label>Photo:</label>
+    <label class="ontop">Photo:</label>
     <input type="file" (change)="selectFile($event)">
     <br/>
     <button class="create" (click)="newHero()">create</button>

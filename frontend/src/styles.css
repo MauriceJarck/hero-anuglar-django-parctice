@@ -41,21 +41,32 @@
   position: relative;
 }
 
-.login {
-  height: 50%;
-  width: 50%;
+.loginBackground{
+  width: 50vw;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
   padding: 60px 60px;
   background: url(/assets/images/heroes_in_action.jpg) center center #505050;   
   background-size: cover;
   box-shadow: 0px 30px 60px -5px #000;
-  font: normal 90% "Lucida Console" ;
-
 }
 
-label {
+.login {
+  height: 50%;
+  margin-top: 5%;
+  font: normal 90% "Lucida Console"
+}
+
+label{
+  display: inline-block;
+  padding: .2em .5em 0em .5em ;
+  margin-top: 15px;
+  color: gold;
+  border-radius: 10px;
+  background: rgba(255, 17, 0, 1);
+
+}
+.ontop {
   display: inline-block;
   padding: .2em .5em 0em .5em ;
   margin-top: 15px;
@@ -63,7 +74,7 @@ label {
   color: gold;
   border-radius: 10px 10px 0px 0px;
   background: rgba(0, 0, 0, 0.6);
-  
+
 }
 
 a {
@@ -79,7 +90,6 @@ span {
 }
 
 input {
-  width: 30%;
   height: 15px;
   padding: 10px 20px;
   display: block;
@@ -104,7 +114,6 @@ input:focus {
 button {
   background: rgba(0, 0, 0, 1);
   color: gold;
-  width: 37%;
   padding: 10px 20px;
   display: block;
   height: 39px;
