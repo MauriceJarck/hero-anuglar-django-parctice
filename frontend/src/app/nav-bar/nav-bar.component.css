@@ -15,3 +15,11 @@
 .navigation a:hover {
   box-shadow: 0em 0em 2em  gold;
 }
+
+.navigation label {
+  background: black;
+  font: normal 140% "Lucida Console" ;
+  margin-right: 20%;
+  margin-left: 2%;
+
+}
