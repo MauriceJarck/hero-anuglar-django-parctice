@@ -1,5 +1,5 @@
 **.idea
 **__pycache__
 
-/backend/hero_tour/db.sqlite3
 backend/hero_tour/media
+./frontend
