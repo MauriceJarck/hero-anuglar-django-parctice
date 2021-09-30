@@ -11,7 +11,9 @@ const routes: Routes = [{path: 'login', component: LoginComponent},
                         {path: 'dashboard', component: DashboardComponent}, 
                         {path: 'create-hero', component: HeroCreateComponent}, 
                         {path: '', redirectTo: '/login', pathMatch: 'full' },
-                        {path: 'detail/:id', component: HeroDetailComponent}];
+                        {path: 'detail/:id', component: HeroDetailComponent},
+                        {path: '**', redirectTo: '/login'}];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
