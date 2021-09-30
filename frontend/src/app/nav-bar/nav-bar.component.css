@@ -21,5 +21,10 @@
   font: normal 140% "Lucida Console" ;
   margin-right: 20%;
   margin-left: 2%;
+}
 
+.navigation button {
+  background: black;
+  border-radius: 0px;
+  float: right;
 }

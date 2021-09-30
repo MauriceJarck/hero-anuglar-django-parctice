@@ -88,8 +88,14 @@ export class AccountService {
     }
   }
 
-  deleteToken(){
+  logout(){
     localStorage.removeItem('access')
     localStorage.removeItem('refresh')
+    location.href = "/login"
+  }
+
+  getEmail(email: string){
+    // if(!email.trim()){return of([]);}
+    return this.http.get(`${this.baseURL}?search=${email}`, this.httpOptions, )
   }
 }
