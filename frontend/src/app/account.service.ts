@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { UserModel } from './user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RespModel } from './resp';
@@ -29,20 +29,6 @@ export class AccountService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.accessToken } )
   };
 
-  private handleAuthError(err: HttpErrorResponse): Observable<any> {
-    if (err.status == 401 || err.status == 403) {
-      if(!this.isExpired(this.refreshToken)){
-        this.refreshTokenFromBackend().subscribe(_ => window.location.reload())
-      }
-      else{
-        window.location.reload()
-        // window.location.href = '/login'
-      }
-      // return of(err.message)
-    }
-    return throwError(err)
-  }
-
   getAccessTokenPayload(){
     return JSON.stringify(this.jwtHelper.decodeToken(this.accessToken))
   }
@@ -58,7 +44,10 @@ export class AccountService {
 
   getTokensFromBackend(username: string, password:string){
     return this.http.post<UserModel>(this.baseURL + 'api/token/', {username, password}).pipe(
-      tap(res => this.saveTokens(res, false)))
+      tap(res => {
+        this.saveTokens(res, false)
+        console.log(res)
+      }))
   }
 
   refreshTokenFromBackend(){
@@ -66,7 +55,6 @@ export class AccountService {
     return this.http.post<RespModel>(this.baseURL + 'api/token/refresh/', {'refresh': localStorage.getItem('refresh')}, this.httpOptions).pipe(
     tap(res => console.log(`got refreshed tokens ${res['access']}`)),
     tap(res => this.saveTokens(res, true)),
-    // catchError(x=> this.handleAuthError(x))
     );
   }
 

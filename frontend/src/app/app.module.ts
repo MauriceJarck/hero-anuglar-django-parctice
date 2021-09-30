@@ -16,6 +16,8 @@ import { LoginComponent } from './login/login.component'
 
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { PwdResetComponent } from './pwd-reset/pwd-reset.component';
+import { authInterceptorProviders } from './auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService],
+  providers: [authInterceptorProviders, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

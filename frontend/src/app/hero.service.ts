@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HeroModel } from './hero'
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, concatMap, retryWhen, tap, delay } from 'rxjs/operators';
 import { AccountService } from './account.service';
 
 @Injectable({
@@ -14,63 +14,36 @@ export class HeroService {
               private accService: AccountService,) { }
 
   private herosURL = 'http://127.0.0.1:5000/heroes/'
-
  
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('access') } )
   };
 
-  private handleError(err: HttpErrorResponse): Observable<any> {
-    if (err.status == 401 || err.status == 403) {
-      if(!this.accService.isExpired(localStorage.getItem('refresh') || "")){
-        this.accService.refreshTokenFromBackend().subscribe(_ => window.location.reload())
-      }
-      else{
-        window.location.href = '/login'
-      }
-      return of(err.message)
-    }
-    return throwError(err)
-  }
-
   getHeroes(): Observable<HeroModel[]> {
-    return this.http.get<HeroModel[]>(this.herosURL, this.httpOptions)
-      .pipe(
-         catchError(x=> this.handleError(x))
-      );
-  }
+    return this.http.get<HeroModel[]>(this.herosURL)
+    }
 
   getHero(id: number): Observable<HeroModel> {
-    const url = `${this.herosURL}${id}`;
-    return this.http.get<HeroModel>(url, this.httpOptions).pipe(
-      catchError(x=> this.handleError(x))
-      );
+    const url = this.herosURL + id;
+    return this.http.get<HeroModel>(url)
   }
 
   updateHero(hero: HeroModel): Observable<any> {
-    return this.http.put(this.herosURL, hero, this.httpOptions).pipe(
-      catchError(x=> this.handleError(x))
-      )
+    return this.http.put(this.herosURL, hero)
   }
 
   newHero(data: FormData){
     console.log(data.get('name'), data.get('img'))
-    return this.http.post(this.herosURL, data).pipe(
-      catchError(x=> this.handleError(x))
-    )
+    return this.http.post(this.herosURL, data)
   }
 
   deleteHero(hero_id: number){
-    const url = `${this.herosURL}${hero_id}`;
-    return this.http.delete<HeroModel>(url, this.httpOptions).pipe(
-      catchError(x=> this.handleError(x))
-    )
+    const url = this.herosURL + hero_id;
+    return this.http.delete<HeroModel>(url)
     }
 
   searchHeroes(term: string): Observable<HeroModel[]> {
     if(!term.trim()){return of([]);}
-    return this.http.get<HeroModel[]>(`${this.herosURL}?search=${term}`, this.httpOptions, ).pipe(
-      catchError(x=> this.handleError(x))
-      )
+    return this.http.get<HeroModel[]>(`${this.herosURL}?search=${term}`)
   }
 }
